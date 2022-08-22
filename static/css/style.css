@@ -1,6 +1,7 @@
-h1 {
-  border: 2px #eee solid;
-  color: brown;
-  text-align: center;
-  padding: 10px;
+body {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

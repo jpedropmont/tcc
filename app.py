@@ -1,12 +1,11 @@
-from calendar import c
-from pandas import DataFrame
-from openpyxl import load_workbook
-from flask import Flask, request, render_template, redirect, send_from_directory, url_for
+
+from flask import Flask, request, render_template, redirect, url_for
+from models import ExcelFile
 import pandas as pd
-import os
 
 
 app = Flask(__name__)
+ExcelFile = ExcelFile()
 
 
 @app.route('/')
@@ -17,28 +16,22 @@ def index():
 @app.route('/uploader', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
-        f = request.files['file']
-        f.save(f.filename)
-        process(f.filename)
-        return redirect(request.referrer)
+        file = request.files['file']
+        file.save(file.filename)
+        ExcelFile.setWorkbook(file)
+        ExcelFile.duplicateWs()
+        return redirect(url_for('questions'))
 
 
-def process(filename):
-    newWs = duplicateWs(filename)
-    df = DataFrame(newWs.values)
-    df.columns = df.iloc[0]  # making first line as header
-    df = df[1:]
-    print(df)
+@app.route('/questions', methods=['GET', 'POST'])
+def questions():
+    return render_template('questions.html')
 
 
-def duplicateWs(filename):
-    filePath = r'' + os.path.abspath(filename) + ''
-    wb = load_workbook(filePath)
-    originalWs = wb.active
-    newWs = wb.copy_worksheet(originalWs)
-    newWs.title = originalWs.title + "_treated"
-    wb.save(filePath)
-    return newWs
+@app.route('/process', methods=['GET', 'POST'])
+def process():
+    ExcelFile.process()
+    return render_template('index.html')
 
 
 if __name__ == '__main__':

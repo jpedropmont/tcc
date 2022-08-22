@@ -1,0 +1,26 @@
+<title>Upload new File</title>
+
+<div>
+    <h1>Insert an excel file</h1>
+</div>
+
+<div>
+    <form action="/process" method=post enctype=multipart/form-data>
+        <p>
+        <div class="container">
+            <ul>
+                <li>
+                    <input type="checkbox" id="option"><label for="option"> Electronics</label>
+                    <ul>
+                        <a href="{{ url_for('index') }}">FlaskApp</a>
+                        <li><label><input type="checkbox" class="subOption"> Laptops</label></li>
+                        <li><label><input type="checkbox" class="subOption"> TVs</label></li>
+                        <li><label><input type="checkbox" class="subOption"> Microphones</label></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <input type="submit" value="Upload">
+        </p>
+    </form>
+</div>
