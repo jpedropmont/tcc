@@ -1,11 +1,10 @@
 
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, session
 from models import ExcelFile
-import pandas as pd
 
 
 app = Flask(__name__)
-ExcelFile = ExcelFile()
+excelFile = ExcelFile()
 
 
 @app.route('/')
@@ -17,22 +16,22 @@ def index():
 def upload():
     if request.method == 'POST':
         file = request.files['file']
-        file.save(file.filename)
-        ExcelFile.setWorkbook(file)
-        ExcelFile.duplicateWs()
+        excelFile.initDataFrame(file)
         return redirect(url_for('questions'))
 
 
 @app.route('/questions', methods=['GET', 'POST'])
 def questions():
-    return render_template('questions.html')
+    columns = excelFile.getColumns()
+    return render_template('questions.html', columns=columns)
 
 
 @app.route('/process', methods=['GET', 'POST'])
 def process():
-    ExcelFile.process()
-    return render_template('index.html')
+    excelFile.process(request.form)
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
+    app.secret_key = 'super secret key'
     app.run(debug=True)

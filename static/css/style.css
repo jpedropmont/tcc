@@ -1,7 +1,41 @@
+html,
 body {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.index, .questions {
+  width: 500px;
+}
+
+.questions .mb-3 {
+  border-left: solid gainsboro;
+  padding-left: 15px;
+}
+
+.questions #buttonSubmit {
+  padding-top: 20px;
+}
+
+.questions #outputRange {
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+}
+
+.questions #submitQuestions {
+  width: 100px;
+}
+
+.questions .valueSupressionRow, #selectColumns {
+  width: 50%;
 }

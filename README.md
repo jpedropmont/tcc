@@ -22,7 +22,13 @@ Openpyxl
 ```bash
 pip install pandas
 ```
+Faker
+```bash
+pip install Faker
+```
 
 ## Usage
 
 Here you can write any kind of things that help others to use your project. Feel free to add as many aspects as you like. Here are just three examples:
+
+git checkout origin/master -- test.xlsx
