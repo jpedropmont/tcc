@@ -2,17 +2,13 @@ html,
 body {
   height: 100%;
   width: 100%;
-}
-
-.container {
   align-items: center;
   display: flex;
   justify-content: center;
-  height: 100%;
-  width: 100%;
 }
 
-.index, .questions {
+.index,
+.questions {
   width: 500px;
 }
 
@@ -36,6 +32,15 @@ body {
   width: 100px;
 }
 
-.questions .valueSupressionRow, #selectColumns {
+.questions #selectColumns {
   width: 50%;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.col col-lg-2 {
+  margin: 100px;
 }
