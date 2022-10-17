@@ -2,20 +2,17 @@
 
 {% block content %}
 <div class="index">
-  <form action="/uploader" method=post enctype=multipart/form-data>
-    <div class="mb-3">
-      <div class="row">
-        <label for="formFile" class="form-label">Insira arquivo excel a ser tratado</label>
-      </div>
-      <div class="row">
-        <div class="col-10">
-          <input class="form-control" type="file" id="formFile" name="file">
-        </div>
-        <div class="col-2">
-          <button type="submit" class="btn btn-primary">Submeter</button>
-        </div>
-      </div>
+  <form action="/uploader" method=post enctype=multipart/form-data id="form">
+    <div>
+      <label for="file">ENVIAR EXCEL</label>
+      <input type="file" name="file" id="file">
     </div>
   </form>
 </div>
+
+<script>
+  document.getElementById("file").onchange = function () {
+    document.getElementById("form").submit();
+  };
+</script>
 {% endblock %}

@@ -20,11 +20,20 @@ pip install pandas
 ```
 Openpyxl
 ```bash
-pip install pandas
+pip install openpyxl
 ```
 Faker
 ```bash
 pip install Faker
+```
+SDV
+```bash
+pip install sdv
+```
+Pandas-Profiling
+```bash
+pip install pandas-profiling
+pip install --upgrade pandas-profiling
 ```
 
 ## Usage

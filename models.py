@@ -2,7 +2,7 @@ from faker import Faker
 from openpyxl import load_workbook
 from pandas import DataFrame
 from faker import Faker
-import pandas as pd
+from sdv.demo import load_tabular_demo
 import random
 import os
 
@@ -19,27 +19,28 @@ class ExcelFile:
         self.df = self.df[1:]  # take the data less the header row
         self.df.columns = self.columns  # set the header row as the df header
 
+    def getDf(self):
+        return self.df
+
     def getColumns(self):
         return self.columns
 
     def process(self, form):
-        # Generalization
-
         # Synthesizing data
-        columns = self.getColumns().to_list()
-        amountRange = int(form['amountRange'])
-        rowsCount = len(self.df.index) - 1  # Subtract header
-        noiseAddCount = int(rowsCount * (amountRange / 100))
+        # columns = self.getColumns().to_list()
+        # amountRange = int(form['amountRange'])
+        # rowsCount = len(self.df.index) - 1  # Subtract header
+        # noiseAddCount = int(rowsCount * (amountRange / 100))
 
-        dfNoise = DataFrame(columns=columns)
-        newId = rowsCount + 1
+        # dfNoise = DataFrame(columns=columns)
+        # newId = rowsCount + 1
 
-        for row in range(noiseAddCount):
-            newId += 1
-            dfNoise.loc[row] = self.generateFakeRow(columns, newId)
+        # for row in range(noiseAddCount):
+        #     newId += 1
+        #     dfNoise.loc[row] = self.generateFakeRow(columns, newId)
 
-        # pd.concat([self.df, dfNoise], axis=0)
-        self.df = self.df.append(dfNoise)
+        # # pd.concat([self.df, dfNoise], axis=0)
+        # self.df = self.df.append(dfNoise)
 
         # Supression
         supressedValue = form['suppressedValue']
@@ -47,6 +48,14 @@ class ExcelFile:
             self.df.replace([float(supressedValue)], '', inplace=True)
         else:
             self.df.replace([supressedValue], '', inplace=True)
+
+        self.df.to_excel("output.xlsx", index=False)
+
+        # Generalization
+        generalizedColumn = form['genericColumn']
+        genericValue = form['genericValue']
+
+        self.df[generalizedColumn] = genericValue
 
         self.df.to_excel("output.xlsx", index=False)
 
