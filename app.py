@@ -1,8 +1,7 @@
 
 from flask import Flask, request, render_template, redirect, url_for, session
 from models import ExcelFile
-from openpyxl import load_workbook
-from pandas_profiling import ProfileReport
+import sweetviz as sv
 
 app = Flask(__name__)
 excelFile = ExcelFile()
@@ -30,19 +29,20 @@ def questions():
 @app.route('/process', methods=['GET', 'POST'])
 def process():
     excelFile.process(request.form)
-    return redirect(url_for('display_table'))
+    return redirect(url_for('report'))
 
 
-@app.route("/display_table")
-def display_table():
-    # # (B1) OPEN EXCEL FILE + WORKSHEET
-    # book = load_workbook("output.xlsx")
-    # sheet = book.active
+@app.route("/report")
+def report():
+    initial = excelFile.getDf("Initial")
+    final = excelFile.getDf("Final")
 
-    # (B2) PASS INTO HTML TEMPLATE
-    profile = ProfileReport(excelFile.getDf())
+    feature_config = sv.FeatureConfig(skip=["ticket", "boat", "body"])
+    my_report = sv.compare([initial, 'Initial'], [
+                           final, 'Final'], feat_cfg=feature_config)
+    my_report.show_html()
 
-    return profile.to_html()
+    return ""
 
 
 if __name__ == '__main__':

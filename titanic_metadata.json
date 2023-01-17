@@ -1,0 +1,52 @@
+{
+    "fields": {
+        "pclass": {
+            "type": "numerical",
+            "subtype": "integer"
+        },
+        "survived": {
+            "type": "numerical",
+            "subtype": "integer"
+        },
+        "name": {
+            "type": "categorical"
+        },
+        "sex": {
+            "type": "categorical"
+        },
+        "age": {
+            "type": "numerical",
+            "subtype": "float"
+        },
+        "sibsp": {
+            "type": "numerical",
+            "subtype": "integer"
+        },
+        "parch": {
+            "type": "numerical",
+            "subtype": "integer"
+        },
+        "ticket": {
+            "type": "categorical"
+        },
+        "fare": {
+            "type": "numerical",
+            "subtype": "float"
+        },
+        "cabin": {
+            "type": "categorical"
+        },
+        "embarked": {
+            "type": "categorical"
+        },
+        "boat": {
+            "type": "categorical"
+        },
+        "body": {
+            "type": "categorical"
+        },
+        "home.dest": {
+            "type": "categorical"
+        }
+    }
+}

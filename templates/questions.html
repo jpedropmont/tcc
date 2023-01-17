@@ -10,31 +10,7 @@
             </header>
             <input type="radio" name="accordion" id="cb1" />
             <section class="box">
-                <label class="box-title" for="cb1">Adição de Ruído</label>
-                <label class="box-close" for="acc-close"></label>
-                <div class="box-content">
-                    <div class="row">
-                        <div class="col-11">
-                            <div id="noiseInput">
-                                <input type="range" class="form-range" id="customRange" name="amountRange"
-                                    oninput="this.form.amountInput.value=this.value" value="0">
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            <input type="number" name="amountInput" value="0"
-                                oninput="this.form.amountRange.value=this.value" id="outputRange" disabled />
-                        </div>
-                    </div>
-                    <br>
-                    <p>
-                        <span>Neste esquema, se um valor do nó for generalizado, todos os outros valores nas folhas da
-                            sub-árvore também serão igualmente generalizados.</span>
-                    </p>
-                </div>
-            </section>
-            <input type="radio" name="accordion" id="cb2" />
-            <section class="box">
-                <label class="box-title" for="cb2">Supressão de Valor</label>
+                <label class="box-title" for="cb1">Supressão de Valor</label>
                 <label class="box-close" for="acc-close"></label>
                 <div class="box-content">
                     <input type="text" class="inp" id="suppressedValue" name="suppressedValue"
@@ -45,12 +21,11 @@
                             por
                             um valor especial.</span>
                     </p>
-
                 </div>
             </section>
-            <input type="radio" name="accordion" id="cb3" />
+            <input type="radio" name="accordion" id="cb2" />
             <section class="box">
-                <label class="box-title" for="cb3">Generalização de Domínio Completo</label>
+                <label class="box-title" for="cb2">Generalização de Domínio Completo</label>
                 <label class="box-close" for="acc-close"></label>
                 <div class="box-content">
                     <div class="row">
@@ -71,6 +46,32 @@
                     <p>
                         <span>Nesse esquema, todos os valores em um atributo são generalizados para o mesmo nível da
                             taxonomia da árvore.</span>
+                    </p>
+
+                </div>
+            </section>
+            <input type="radio" name="accordion" id="cb3" />
+            <section class="box">
+                <label class="box-title" for="cb3">Geração de Dados Sintéticos</label>
+                <label class="box-close" for="acc-close"></label>
+                <div class="box-content">
+                    <div class="row">
+                        <div class="col-11">
+                            <div id="noiseInput">
+                                <input type="range" class="form-range" id="customRange" name="amountRange"
+                                    oninput="this.form.amountInput.value=this.value" value="0">
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <input type="number" name="amountInput" value="0"
+                                oninput="this.form.amountRange.value=this.value" id="outputRange" disabled />
+                        </div>
+                    </div>
+                    <br>
+                    <p>
+                        <span>A ideia geral dessa abordagem é a partir de um modelo estatístico definido pelos dados
+                            disponibilizados, gerar dados sintéticos que correspondem a tal. <br>
+                            Modelo Estatístico: Gaussiano.</span>
                     </p>
                 </div>
             </section>
